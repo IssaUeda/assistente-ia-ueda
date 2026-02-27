@@ -11,7 +11,7 @@ async function gerarCodigo() {
         let resposta = await fetch("/.netlify/functions/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ mensagem: textoUsuario })
+            body: JSON.stringify({ mensagem: textoUsuario })  //gggggggg/////
         })
 
         let dados = await resposta.json()
