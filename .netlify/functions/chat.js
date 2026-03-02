@@ -1,13 +1,12 @@
-// chat.js - Função serverless para Netlify
 
 export async function handler(event, context) {
   try {
-    // verifica se é POST
+    
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Método não permitido" };
     }
 
-    // pega a mensagem do corpo da requisição
+    
     const { mensagem } = JSON.parse(event.body);
 
     if (!mensagem) {
@@ -17,10 +16,10 @@ export async function handler(event, context) {
       };
     }
 
-    // chave da API definida nas variáveis de ambiente do Netlify
+    
     const API_KEY = process.env.GROQ_API_KEY;
 
-    // valida se a key existe
+    
     if (!API_KEY) {
       console.error("GROQ_API_KEY não encontrada nas variáveis de ambiente");
       return {
@@ -29,10 +28,10 @@ export async function handler(event, context) {
       };
     }
 
-    // endpoint da API
+    
     const endpoint = "https://api.groq.com/openai/v1/chat/completions";
 
-    // requisição para a IA
+    
     const resposta = await fetch(endpoint, {
       method: "POST",
       headers: {
@@ -55,7 +54,7 @@ export async function handler(event, context) {
       })
     });
 
-    //  tratamento de erro da Groq
+    
     const dados = await resposta.json();
 
     if (!dados.choices) {

@@ -6,12 +6,12 @@ async function gerarCodigo() {
 
     blocoCodigo.textContent = "Gerando resposta..."
 
-    // Chamada para a função serverless no Netlify
+   
     try {
         let resposta = await fetch("/.netlify/functions/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ mensagem: textoUsuario })  //gggggggg/////
+            body: JSON.stringify({ mensagem: textoUsuario }) 
         })
 
         let dados = await resposta.json()
